@@ -11,14 +11,6 @@
 
     <artifactId>open-coroutine-core</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>org.scijava</groupId>
-            <artifactId>native-lib-loader</artifactId>
-            <version>2.0.2</version>
-        </dependency>
-    </dependencies>
-
     <profiles>
         <!-- https://github.com/openjdk/jdk/blob/jdk-16%2B36/src/java.base/windows/native/libjava/java_props_md.c#L568 -->
         <!-- macos -->
@@ -76,7 +68,7 @@
                         <configuration>
                             <javahIncludes>
                                 <javahInclude>
-                                    <className>org.opencoroutine.framework.NativeChecker</className>
+                                    <className>org.opencoroutine.framework.NativeCheckerApi</className>
                                 </javahInclude>
                             </javahIncludes>
                             <jdkIncludePath>${project.basedir}/src/main/native/head</jdkIncludePath>
@@ -157,7 +149,7 @@
                 <configuration>
                     <javahIncludes>
                         <javahInclude>
-                            <className>org.opencoroutine.framework.NativeChecker</className>
+                            <className>org.opencoroutine.framework.NativeCheckerApi</className>
                         </javahInclude>
                     </javahIncludes>
                     <jdkIncludePath>${project.basedir}/src/main/native/head</jdkIncludePath>

@@ -20,5 +20,7 @@ public class NativeChecker {
         }
     }
 
-    public static native String check(String param);
+    public static String check(String param) {
+        return NativeCheckerApi.check(param);
+    }
 }

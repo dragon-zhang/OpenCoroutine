@@ -11,6 +11,7 @@
 
     <modules>
         <module>open-coroutine-core</module>
+        <module>open-coroutine-sdk</module>
         <module>open-coroutine-hook</module>
         <module>open-coroutine-examples</module>
     </modules>
@@ -20,6 +21,11 @@
             <dependency>
                 <groupId>org.open-coroutine.framework</groupId>
                 <artifactId>open-coroutine-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.open-coroutine.framework</groupId>
+                <artifactId>open-coroutine-sdk</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

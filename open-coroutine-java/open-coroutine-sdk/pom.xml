@@ -9,13 +9,18 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>open-coroutine-examples</artifactId>
+    <artifactId>open-coroutine-sdk</artifactId>
 
     <dependencies>
         <dependency>
             <groupId>org.open-coroutine.framework</groupId>
-            <artifactId>open-coroutine-sdk</artifactId>
+            <artifactId>open-coroutine-core</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.scijava</groupId>
+            <artifactId>native-lib-loader</artifactId>
+            <version>2.0.2</version>
         </dependency>
     </dependencies>
 </project>
