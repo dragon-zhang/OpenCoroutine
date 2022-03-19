@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>org.open-coroutine.framework</groupId>
-            <artifactId>open-coroutine-sdk</artifactId>
+            <artifactId>open-coroutine-core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

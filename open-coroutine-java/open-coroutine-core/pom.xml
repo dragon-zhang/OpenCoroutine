@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>open-coroutine-sdk</artifactId>
+    <artifactId>open-coroutine-core</artifactId>
 
     <dependencies>
         <dependency>

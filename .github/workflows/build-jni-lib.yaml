@@ -16,11 +16,11 @@ jobs:
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
       - name: show jni lib
-        run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
+        run: cd open-coroutine-java/open-coroutine-core/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
-          path: open-coroutine-java/open-coroutine-sdk/target/classes/*.so
+          path: open-coroutine-java/open-coroutine-core/target/classes/*.so
 
   mac:
     runs-on: macos-latest
@@ -35,11 +35,11 @@ jobs:
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
       - name: show jni lib
-        run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
+        run: cd open-coroutine-java/open-coroutine-core/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
-          path: open-coroutine-java/open-coroutine-sdk/target/classes/*.dylib
+          path: open-coroutine-java/open-coroutine-core/target/classes/*.dylib
 
   windows:
     runs-on: windows-2019
@@ -54,8 +54,8 @@ jobs:
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
       - name: show jni lib
-        run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
+        run: cd open-coroutine-java/open-coroutine-core/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
-          path: open-coroutine-java/open-coroutine-sdk/target/classes/*.dll
+          path: open-coroutine-java/open-coroutine-core/target/classes/*.dll

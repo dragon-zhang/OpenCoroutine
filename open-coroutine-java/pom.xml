@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>open-coroutine-sdk</module>
+        <module>open-coroutine-core</module>
         <module>open-coroutine-hook</module>
         <module>open-coroutine-examples</module>
     </modules>
@@ -19,7 +19,7 @@
         <dependencies>
             <dependency>
                 <groupId>org.open-coroutine.framework</groupId>
-                <artifactId>open-coroutine-sdk</artifactId>
+                <artifactId>open-coroutine-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
