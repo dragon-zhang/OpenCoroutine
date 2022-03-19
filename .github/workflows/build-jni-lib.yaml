@@ -13,9 +13,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-          path: open-coroutine-java/
       - name: Build with Maven
         run: mvn clean package
+        with:
+          path: open-coroutine-java/
       - uses: actions/upload-artifact@v2
         with:
           name: lib
@@ -31,9 +32,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-          path: open-coroutine-java/
       - name: Build with Maven
         run: mvn clean package
+        with:
+          path: open-coroutine-java/
       - uses: actions/upload-artifact@v2
         with:
           name: lib
@@ -49,9 +51,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
-          path: open-coroutine-java/
       - name: Build with Maven
         run: mvn clean package
+        with:
+          path: open-coroutine-java/
       - uses: actions/upload-artifact@v2
         with:
           name: lib
