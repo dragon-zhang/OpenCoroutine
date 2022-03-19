@@ -13,6 +13,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: show dir
+        run: ls
       - name: enter the maven project
         run: cd /open-coroutine-java
       - name: Build with Maven
@@ -32,6 +34,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: show dir
+        run: ls
       - name: enter the maven project
         run: cd /open-coroutine-java
       - name: Build with Maven
@@ -51,6 +55,8 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: show dir
+        run: ls
       - name: enter the maven project
         run: cd /open-coroutine-java
       - name: Build with Maven
