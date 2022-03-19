@@ -6,14 +6,27 @@
 
     <groupId>org.open-coroutine.framework</groupId>
     <artifactId>open-coroutine-java</artifactId>
-    <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
     <modules>
         <module>open-coroutine-sdk</module>
         <module>open-coroutine-hook</module>
         <module>open-coroutine-examples</module>
     </modules>
 
-    <!-- 可参考https://github.com/dragon-zhang/native-maven-plugin-demo -->
-
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.open-coroutine.framework</groupId>
+                <artifactId>open-coroutine-sdk</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.open-coroutine.framework</groupId>
+                <artifactId>open-coroutine-hook</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

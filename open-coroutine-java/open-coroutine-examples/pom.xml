@@ -11,4 +11,11 @@
 
     <artifactId>open-coroutine-examples</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.open-coroutine.framework</groupId>
+            <artifactId>open-coroutine-sdk</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>
