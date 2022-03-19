@@ -23,10 +23,10 @@
 *.lo
 
 # Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+lib_fiber/*.dll
+lib_fiber/*.so
+lib_fiber/*.so.*
+lib_fiber/*.dylib
 
 # Executables
 *.exe
