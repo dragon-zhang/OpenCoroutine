@@ -110,7 +110,7 @@
                                 <linkerStartOption>-static</linkerStartOption>
                             </linkerStartOptions>
                             <linkerEndOptions>
-                                <linkerEndOption>-o ${project.build.directory}/${lib_name}</linkerEndOption>
+                                <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                             </linkerEndOptions>
                         </configuration>
                         <executions>
