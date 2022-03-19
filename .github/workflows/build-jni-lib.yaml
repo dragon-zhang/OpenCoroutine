@@ -15,12 +15,12 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
-      - name: ls
+      - name: show jni lib
         run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
-          path: open-coroutine-sdk/target/classes/lib*
+          path: open-coroutine-sdk/target/classes/*.so
 
   mac:
     runs-on: macos-latest
@@ -34,10 +34,12 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
+      - name: show jni lib
+        run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
-          path: open-coroutine-sdk/target/classes/lib*
+          path: open-coroutine-sdk/target/classes/*.dylib
 
   windows:
     runs-on: windows-2016
@@ -51,6 +53,8 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
+      - name: show jni lib
+        run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
