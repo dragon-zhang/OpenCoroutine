@@ -15,6 +15,8 @@ jobs:
           distribution: 'adopt'
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
+      - name: ls
+        run: cd open-coroutine-java/open-coroutine-sdk/target/classes && ls
       - uses: actions/upload-artifact@v2
         with:
           name: lib
