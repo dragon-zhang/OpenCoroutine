@@ -42,7 +42,7 @@ jobs:
           path: open-coroutine-java/open-coroutine-sdk/target/classes/*.dylib
 
   windows:
-    runs-on: windows-2016
+    runs-on: windows-2019
 
     steps:
       - uses: actions/checkout@v2
