@@ -155,11 +155,33 @@
                     <jdkIncludePath>${project.basedir}/src/main/native/head</jdkIncludePath>
                     <javahOS>${os_name}</javahOS>
                     <sources>
+                        <!-- lib_fiber -->
                         <source>
-                            <directory>src/main/native/src</directory>
-                            <fileNames>
-                                <fileName>jni-library.c</fileName>
-                            </fileNames>
+                            <directory>${project.basedir}/../../lib_fiber/c/</directory>
+                            <includes>
+                                <include>include/fiber/*.h</include>
+                                <include>src/*.h</include>
+                                <include>src/common/*.h</include>
+                                <include>src/dns/*.h</include>
+                                <include>src/event/*.h</include>
+                                <include>src/fiber/*.h</include>
+                                <include>src/hook/*.h</include>
+
+                                <include>src/*.c</include>
+                                <include>src/common/*.c</include>
+                                <include>src/dns/*.c</include>
+                                <include>src/event/*.c</include>
+                                <include>src/fiber/*.c</include>
+                                <include>src/hook/*.c</include>
+                            </includes>
+                        </source>
+
+                        <!-- jni主体 -->
+                        <source>
+                            <directory>${project.basedir}/src/main/native/src</directory>
+                            <includes>
+                                <include>*.c</include>
+                            </includes>
                         </source>
                     </sources>
 

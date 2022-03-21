@@ -1,7 +1,7 @@
-#include "stdafx.h"
-#include "common.h"
+#include "../stdafx.h"
+#include "../common.h"
 
-#include "fiber.h"
+#include "../fiber.h"
 
 #ifdef SYS_UNIX
 

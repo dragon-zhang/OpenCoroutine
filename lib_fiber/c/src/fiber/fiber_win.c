@@ -1,6 +1,6 @@
-#include "stdafx.h"
-#include "common.h"
-#include "fiber.h"
+#include "../stdafx.h"
+#include "../common.h"
+#include "../fiber.h"
 
 #ifdef SYS_WIN
 

@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "msg.h"
 #include "memory.h"
 #include "timer_cache.h"

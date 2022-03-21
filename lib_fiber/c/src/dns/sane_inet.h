@@ -1,41 +1,43 @@
 #ifndef	__SANE_INET_INCLUDE_H__
 #define	__SANE_INET_INCLUDE_H__
 
+#include "../../include/fiber/fiber_define.h"
+
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
 /**
- * ½«IPµØÖ·×ª»»³É×Ö·û´®¸ñÊ½
- * @param src {const unsigned char*} struct in_addr in.s_addr µÄÁ¬ÐøÄÚ´æ±íÊ¾
- * @param dst {char *} ´æ´¢×ª»»½á¹û
- * @param size {size_t} dst µÄ¿Õ¼ä´óÐ¡
+ * ï¿½ï¿½IPï¿½ï¿½Ö·×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
+ * @param src {const unsigned char*} struct in_addr in.s_addr ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½ï¿½Ê¾
+ * @param dst {char *} ï¿½æ´¢×ªï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param size {size_t} dst ï¿½Ä¿Õ¼ï¿½ï¿½Ð¡
  * @return {const char*} NULL: error; !NULL: ok
  */
 const char *inet_ntop4(const unsigned char *src, char *dst, size_t size);
 
 /**
- * ½«IPµØÖ·×ª»»³É×Ö·û´®¸ñÊ½
+ * ï¿½ï¿½IPï¿½ï¿½Ö·×ªï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½Ê½
  * @param in {struct in_addr}
- * @param dst {char *} ´æ´¢×ª»»½á¹û
- * @param size {size_t} dst µÄ¿Õ¼ä´óÐ¡
+ * @param dst {char *} ï¿½æ´¢×ªï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param size {size_t} dst ï¿½Ä¿Õ¼ï¿½ï¿½Ð¡
  * @return {const char*} NULL: error; !NULL: ok
  */
 const char *sane_inet_ntoa(struct in_addr in, char *dst, size_t size);
 
 /**
- * ÅÐ¶Ï¸ø¶¨µÄ×Ö·û´®ÊÇ·ñÊÇÕýÈ·µÄ ip µØÖ·
+ * ï¿½Ð¶Ï¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ ip ï¿½ï¿½Ö·
  * @param ip {const char *ip}
- * @return {int} != 0: ÊÇ; == 0: ·ñ
+ * @return {int} != 0: ï¿½ï¿½; == 0: ï¿½ï¿½
  */
 int is_ip(const char *ip);
 int is_ipv4(const char *ip);
 int is_ipv6(const char *ip);
 
 /**
- * ÅÐ¶ÏËù¸øµÄ ip µØÖ·ÊÇ·ñ·ûºÏ xxx.xxx.xxx.xxx:port ¸ñÊ½
- * @param addr {const char*} IP:PORT µØÖ·
- * @return {int} 1: ·ûºÏ, 0: ²»·ûºÏ
+ * ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ip ï¿½ï¿½Ö·ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ xxx.xxx.xxx.xxx:port ï¿½ï¿½Ê½
+ * @param addr {const char*} IP:PORT ï¿½ï¿½Ö·
+ * @return {int} 1: ï¿½ï¿½ï¿½ï¿½, 0: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 int ipv4_addr_valid(const char *addr);
 

@@ -1,7 +1,7 @@
 #ifndef __HOOK_HEAD_H__
 #define __HOOK_HEAD_H__
 
-#include "fiber/fiber_define.h"
+#include "../../include/fiber/fiber_define.h"
 
 #ifdef __cplusplus
 extern "C" {

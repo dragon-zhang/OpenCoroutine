@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../stdafx.h"
 #include "memory.h"
 #include "iterator.h"
 #include "fifo.h"

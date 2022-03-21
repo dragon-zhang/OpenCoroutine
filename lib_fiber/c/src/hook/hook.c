@@ -1,5 +1,5 @@
-#include "stdafx.h"
-#include "common.h"
+#include "../stdafx.h"
+#include "../common.h"
 #include "hook.h"
 
 socket_fn     __sys_socket                  = NULL;

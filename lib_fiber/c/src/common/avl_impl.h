@@ -31,7 +31,7 @@
  * This is a private header file.  Applications should not directly include
  * this file.
  */
-#include "stdafx.h"
+#include "../stdafx.h"
 
 #include <sys/types.h>
 #include <stddef.h>

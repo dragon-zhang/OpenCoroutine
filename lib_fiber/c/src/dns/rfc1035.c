@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "../stdafx.h"
 
 #ifdef	SYS_UNIX
 #include <sys/socket.h>
@@ -10,9 +10,9 @@
 
 #include <string.h>
 
-#include "common/strops.h"
-#include "common/msg.h"
-#include "common/argv.h"
+#include "../common/strops.h"
+#include "../common/msg.h"
+#include "../common/argv.h"
 #include "rfc1035.h"
 
 #define RFC1035_MAXLABELSZ	63

@@ -8,7 +8,7 @@
 #ifdef	HAS_EPOLL
 #include <sys/epoll.h>
 #endif
-#include "fiber/libfiber.h"
+#include "../include/fiber/libfiber.h"
 
 #if defined(USE_FAST_TIME)
 #define SET_TIME(x) do { \
