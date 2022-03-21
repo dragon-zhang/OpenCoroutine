@@ -13,6 +13,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: Build lib_fiber
+        run: cd lib_fiber/c && make
+      - name: show lib fiber
+        run: cd lib_fiber/lib && ls
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
       - name: show jni lib
@@ -32,6 +36,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: Build lib_fiber
+        run: cd lib_fiber/c && make
+      - name: show lib fiber
+        run: cd lib_fiber/lib && ls
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
       - name: show jni lib
@@ -51,6 +59,10 @@ jobs:
         with:
           java-version: '8'
           distribution: 'adopt'
+      - name: Build lib_fiber
+        run: cd lib_fiber/c && make
+      - name: show lib fiber
+        run: cd lib_fiber/lib && ls
       - name: Build with Maven
         run: cd open-coroutine-java/ && mvn clean package
       - name: show jni lib

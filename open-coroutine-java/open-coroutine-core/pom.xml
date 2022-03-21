@@ -156,25 +156,25 @@
                     <javahOS>${os_name}</javahOS>
                     <sources>
                         <!-- lib_fiber -->
-                        <source>
-                            <directory>${project.basedir}/../../lib_fiber/c/</directory>
-                            <includes>
-                                <include>include/fiber/*.h</include>
-                                <include>src/*.h</include>
-                                <include>src/common/*.h</include>
-                                <include>src/dns/*.h</include>
-                                <include>src/event/*.h</include>
-                                <include>src/fiber/*.h</include>
-                                <include>src/hook/*.h</include>
+<!--                        <source>-->
+<!--                            <directory>${project.basedir}/../../lib_fiber/c/</directory>-->
+<!--                            <includes>-->
+<!--                                <include>include/fiber/*.h</include>-->
+<!--                                <include>src/*.h</include>-->
+<!--                                <include>src/common/*.h</include>-->
+<!--                                <include>src/dns/*.h</include>-->
+<!--                                <include>src/event/*.h</include>-->
+<!--                                <include>src/fiber/*.h</include>-->
+<!--                                <include>src/hook/*.h</include>-->
 
-                                <include>src/*.c</include>
-                                <include>src/common/*.c</include>
-                                <include>src/dns/*.c</include>
-                                <include>src/event/*.c</include>
-                                <include>src/fiber/*.c</include>
-                                <include>src/hook/*.c</include>
-                            </includes>
-                        </source>
+<!--                                <include>src/*.c</include>-->
+<!--                                <include>src/common/*.c</include>-->
+<!--                                <include>src/dns/*.c</include>-->
+<!--                                <include>src/event/*.c</include>-->
+<!--                                <include>src/fiber/*.c</include>-->
+<!--                                <include>src/hook/*.c</include>-->
+<!--                            </includes>-->
+<!--                        </source>-->
 
                         <!-- jni主体 -->
                         <source>
@@ -202,6 +202,8 @@
                         <linkerStartOption>-shared</linkerStartOption>
                     </linkerStartOptions>
                     <linkerEndOptions>
+                        <!-- lib_fiber -->
+                        <linkerEndOption>-o ${project.basedir}/../../lib_fiber/lib/libfiber.a</linkerEndOption>
                         <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                     </linkerEndOptions>
                 </configuration>
