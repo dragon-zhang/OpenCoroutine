@@ -88,7 +88,7 @@
  *	  than the value of the indicated "avl_node_t *".
  */
 
-#include "../stdafx.h"
+#include "stdafx.h"
 
 #include <sys/types.h>
 #include "avl.h"

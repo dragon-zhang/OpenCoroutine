@@ -1,6 +1,6 @@
-#include "../stdafx.h"
-#include "../../include/fiber/fiber_define.h"
-#include "../fiber.h"
+#include "stdafx.h"
+#include "fiber/fiber_define.h"
+#include "fiber.h"
 #include "msg.h"
 #include "iostuff.h"
 

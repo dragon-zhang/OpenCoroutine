@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "strops.h"
 
 #ifdef SYS_WIN

@@ -7,9 +7,16 @@ INC_ACL   = $(DESTDIR)/$(PREFIX)/include/acl-lib
 
 lib_fiber:
 	@(cd c; make)
+	@(cd cpp; make)
+
+all: lib_fiber
+	@(cd samples; make)
 
 clean cl:
 	@(cd c; make clean)
+	@(cd cpp; make clean)
+	@(cd samples; make clean)
+
 
 packinstall:
 	@(echo "")

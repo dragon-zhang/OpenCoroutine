@@ -1,11 +1,11 @@
-#include "../stdafx.h"
-#include "../common.h"
+#include "stdafx.h"
+#include "common.h"
 
 #ifdef	HAS_KQUEUE
 
 #include <dlfcn.h>
 #include <sys/event.h>
-#include "../event.h"
+#include "event.h"
 #include "event_kqueue.h"
 
 typedef int (*kqueue_fn)(void);

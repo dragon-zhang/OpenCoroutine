@@ -1,7 +1,7 @@
 #ifndef __STROPS_HEADER_H__
 #define __STROPS_HEADER_H__
 
-#include "../define.h"
+#include "define.h"
 
 #ifndef SAFE_STRNCPY
 #define SAFE_STRNCPY(_obj, _src, _size) do {                \

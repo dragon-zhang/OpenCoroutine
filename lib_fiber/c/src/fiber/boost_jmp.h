@@ -1,8 +1,6 @@
 #ifndef __BOOST_JUMP_INCLUDE_H__
 #define __BOOST_JUMP_INCLUDE_H__
 
-#include "../../include/fiber/fiber_define.h"
-
 typedef void* fcontext_t;
 
 typedef struct {

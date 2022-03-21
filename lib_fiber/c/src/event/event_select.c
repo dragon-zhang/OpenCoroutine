@@ -1,11 +1,11 @@
-#include "../stdafx.h"
-#include "../common.h"
+#include "stdafx.h"
+#include "common.h"
 
 #ifdef HAS_SELECT
 
-#include "../../include/fiber/libfiber.h"
-#include "../hook/hook.h"
-#include "../event.h"
+#include "fiber/libfiber.h"
+#include "hook/hook.h"
+#include "event.h"
 #include "event_select.h"
 
 typedef struct EVENT_SELECT {

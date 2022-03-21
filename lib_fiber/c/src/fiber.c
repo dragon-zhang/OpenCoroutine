@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "../include/fiber/libfiber.h"
+#include "fiber/libfiber.h"
 #include "common.h"
 
 #ifdef USE_VALGRIND

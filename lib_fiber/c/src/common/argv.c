@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "memory.h"
 #include "strops.h"
 #include "argv.h"

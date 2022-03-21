@@ -1,5 +1,5 @@
-#include "../stdafx.h"
-#include "../common.h"
+#include "stdafx.h"
+#include "common.h"
 
 #ifdef HAS_IOCP
 

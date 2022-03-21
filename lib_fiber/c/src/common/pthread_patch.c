@@ -1,4 +1,4 @@
-#include "../stdafx.h"
+#include "stdafx.h"
 #include "fifo.h"
 #include "memory.h"
 #include "msg.h"
@@ -49,7 +49,7 @@ void pthread_end(void)
 	}
 }
 
-/* ц©О©╫О©╫О©╫О©╫О©╫л╣О©╫н╗р╩О©╫О©╫й╪О©╫О©╫О©╫О©╫О©╫О©╫ */
+/* ц©╦Ж╫ЬЁл╣дн╗р╩ЁУй╪╩╞╨╞йЩ */
 
 static void pthread_init_once(void)
 {
@@ -80,7 +80,7 @@ static void pthread_init_once(void)
 	__tls_key_list[__tls_value_list_key].key = __tls_value_list_key;
 }
 
-/* О©╫О©╫О©╫О©╫ъЁл╬ж╡О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
+/* ╩Я╣цоъЁл╬ж╡©╠Да©а╢╠М */
 
 static FIFO *tls_value_list_get(void)
 {
@@ -118,16 +118,16 @@ int pthread_once(pthread_once_t *once_control, void (*init_routine)(void))
 		return EINVAL;
 	}
 
-	/* ж╩О©╫п╣О©╫р╩О©╫О©╫О©╫О©╫О©╫О©╫ InterlockedCompareExchange О©╫О©╫О©╫ъЁл╡е╩О©╫ж╢О©╫О©╫
-	 * init_routine, О©╫О©╫О©╫О©╫О©╫ъЁО©╫О©╫О©╫т╤О©╫О©╫ InterlockedCompareExchange
-	 * О©╫О©╫О©╫О©╫О©╫пёО©╫О©╫О©╫О©╫О©╫р╩ж╠О©╫О©╫О©╫О©╫О©╫я╜О©╫О©╫ж╠О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫ъЁО©╫ж╢О©╫О©╫ init_routine
-	 * О©╫О©╫о╡О©╫О©╫р╫О©╫ *once_control О©╫О©╫О©╫б╦О©╫ж╣, ж╩О©╫О©╫О©╫з╤О©╫к╩О©╫О©╫О©╫О©╫п╤О©╫О©╫О©╫ъЁО©╫
-	 * м╛й╠О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫й╠О©╫О©╫О©╫п©О©╫О©╫эЁО©╫О©╫ж╤О©╫О©╫щ╣д╨О©╫О©╫О©╫О©╫ъЁл©О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
-	 * О©╫О©╫О©╫О©╫ъЁО©╫кЁО©╫О©╫О©╫О©╫О©╫кёО©╫О©╫О©╫О©╫О©╫н╙ *once_control О©╫я╬О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫О©╫ъЁО©╫О©╫О©╫О©╫О©╫
-	 * О©╫О©╫ж╣О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫ж╩О©╫О©╫О©╫О©╫О©╫О©╫к╢О©╫О©╫О©╫О©╫О©╫н╙О©╫к╠О©╫ж╓О©╫О©╫О©╫О©╫О©╫ъЁО©╫О©╫О©╫
-	 * О©╫О©╫О©╫О©╫ pthread_once О©╫О©╫О©╫О©╫г╟ init_routine О©╫О©╫О©╫К╠╩О©╫О©╫О©╫О©╫О©╫р╫О©╫О©╫О©╫
-	 * О©╫О©╫О©╫О©╫О©╫О©╫р╩О©╫О©╫, О©╫О©╫О©╫О©╫VC6О©╫бёО©╫InterlockedCompareExchange О©╫с©з╤О©╫О©╫О©╫
-	 * О©╫О©╫п╘О©╫О©╫О©╫Лё╛О©╫О©╫р╙О©╫О©╫с╡О©╫О©╫ж╦О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫мёО©╫О©╫н╪О©╫ <Windows О©╫ъ╪О©╫О©╫О©╫О©╫ж╦О©╫О©╫>
+	/* ж╩сп╣зр╩╦Ж╣Всц InterlockedCompareExchange ╣доъЁл╡е╩Аж╢пп
+	 * init_routine, ╨СпЬоъЁлсют╤тз InterlockedCompareExchange
+	 * мБткппё╛╡╒грр╩ж╠╫ЬхК©уя╜╩╥ж╠жа╣зр╩╦ЖоъЁлж╢пп init_routine
+	 * мЙ╠о╡╒гр╫╚ *once_control жьпб╦Ёж╣, ж╩сптз╤Ю╨к╩╥╬Ёжп╤Ю╦ЖоъЁл
+	 * м╛й╠ткппжа╢кй╠╡есп©идэЁЖож╤лтщ╣д╨СпЬоъЁл©уя╜╩╥ожоСё╛хГ╧Ш
+	 * ╤Ю╦ЖоъЁлкЁпРжа╢кё╛тРрРн╙ *once_control ря╬╜╠╩╣зр╩╦ЖоъЁлжьпб
+	 * ╦Ёж╣╤Ь╡╩╩А╫ЬхКя╜╩╥лЕдзж╩кЫртхГ╢к╢╕юМё╛йгн╙ак╠ёж╓кЫспоъЁлтз
+	 * ╣Всц pthread_once ╥╣╩ьг╟ init_routine ╠ьпК╠╩╣Всцгр╫Ждэ
+	 * ╠╩╣Всцр╩╢н, ╣╚тзVC6обё╛InterlockedCompareExchange ╫с©з╤╗рЕ
+	 * спп╘╧жрЛё╛пХр╙вЖс╡птж╦╤╗╡нйЩюЮпмё╛╡н╪Ш <Windows ╦ъ╪╤╠ЮЁлж╦до>
 	 * Jeffrey Richter, 366 рЁ
 	 */
 	while (1) {
@@ -136,21 +136,21 @@ int pthread_once(pthread_once_t *once_control, void (*init_routine)(void))
 		if (prev == 2)
 			return 0;
 		else if (prev == 0) {
-			/* ж╩О©╫п╣О©╫р╩О©╫О©╫О©╫ъЁл╡е╩О©╫О©╫О©╫О©╫О©╫ */
+			/* ж╩сп╣зр╩╦ЖоъЁл╡е╩Ажа╢к */
 			init_routine();
-			/* О©╫О©╫ *conce_control О©╫О©╫О©╫б╦О©╫ж╣О©╫О©╫й╧О©╫О©╫О©╫О©╫О©╫ъЁл╡О©╫О©╫О©╫О©╫О©╫ while
-			 * я╜О©╫О©╫О©╫О©╫О©╫ while я╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
+			/* ╫╚ *conce_control жьпб╦Ёж╣ртй╧╨СпЬоъЁл╡╩╫ЬхК while
+			 * я╜╩╥╩Р╢с while я╜╩╥жплЬЁЖ
 			 */
 			InterlockedExchange((LONG*) once_control, 2);
 			return 0;
 		} else {
 			assert(prev == 1);
 
-			/* О©╫О©╫ж╧О©╫О©╫я╜О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫к╥О©╫CPU */
+			/* ╥юж╧©уя╜╩╥╧Щ╤Ю╣ьюк╥яCPU */
 			Sleep(1);  /** sleep 1ms */
 		}
 	}
-	return 1;  /* О©╫О©╫О©╫и╢О©╫О©╫О©╫Кё╛О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫ */
+	return 1;  /* ╡╩©и╢О╢ЗбКё╛╠эцБ╠ЮрКфВ╠╗╬╞╦Ф */
 }
 
 int pthread_key_create(pthread_key_t *key_ptr, void (*destructor)(void*))
@@ -201,7 +201,7 @@ int pthread_setspecific(pthread_key_t key, void *value)
 		if (tls_value->tls_key != NULL
 			&& tls_value->tls_key->key == key) {
 
-			/* О©╫О©╫О©╫О©╫О©╫м╛О©╫д╪О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫р╙О©╫О©╫О©╫м╥е╬О©╫О©╫О©╫О©╫О©╫ */
+			/* хГ╧ШоЮм╛╣д╪Э╢ФтзтРпХр╙охйм╥е╬ийЩ╬щ */
 			if (tls_value->tls_key->destructor && tls_value->value)
 				tls_value->tls_key->destructor(tls_value->value);
 			tls_value->tls_key = NULL;

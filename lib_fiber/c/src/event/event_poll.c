@@ -1,10 +1,10 @@
-#include "../stdafx.h"
-#include "../common.h"
+#include "stdafx.h"
+#include "common.h"
 
 #ifdef HAS_POLL
 
-#include "../hook/hook.h"
-#include "../event.h"
+#include "hook/hook.h"
+#include "event.h"
 #include "event_poll.h"
 
 typedef struct EVENT_POLL {

@@ -1,5 +1,5 @@
-#include "../stdafx.h"
-#include "../../include/fiber/fiber_base.h"
+#include "stdafx.h"
+#include "fiber/fiber_base.h"
 #include "pthread_patch.h"
 #include "memory.h"
 #include "msg.h"
@@ -87,8 +87,8 @@ int gettimeofday(struct timeval *tv, struct timezone *tz)
 	time_t now;
 	TIME_CTX_T *ctx = (TIME_CTX_T*) tls_calloc(sizeof(TIME_CTX_T));
 
-	/* Ã¿ï¿½ï¿½ï¿½ß³Ìµï¿½ï¿½Ã´Ëºï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½Ð³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½Ë·ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ì«ï¿½ï¿½
-	 * ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã¿ï¿½ï¿½ 1 ï¿½ï¿½Ð£ï¿½ï¿½Ò»ï¿½Î»ï¿½×¼Ê±ï¿½ï¿½
+	/* Ã¿¸öÏß³Ìµ÷ÓÃ´Ëº¯ÊýÊ±¶¼ÐèÒª½øÐÐ³õÊ¼»¯£¬µ«ÎªÁË·ÀÖ¹¿ª»úÊ±¼äÌ«³¤
+	 * ¶øÔì³ÉÊ±ÖÓ¼ÆÊý¹éÁãÒç³ö£¬ËùÒÔÃ¿¸ô 1 ÌìÐ£¶ÔÒ»´Î»ù×¼Ê±¼ä
 	 */
 #define DAY_SEC	(3600 * 24)
 
@@ -96,12 +96,12 @@ int gettimeofday(struct timeval *tv, struct timezone *tz)
 	if (now - ctx->last_init > DAY_SEC) {
 		ctx->last_init = now;
 
-		/* ï¿½ï¿½ï¿½CPUï¿½ï¿½Ê±ï¿½ï¿½Æµï¿½ï¿½ */
+		/* »ñµÃCPUµÄÊ±ÖÓÆµÂÊ */
 		if (!QueryPerformanceFrequency(&ctx->frequency)) {
 			msg_fatal("%s(%d): Unable to get System Frequency(%s)",
 				__FILE__, __LINE__, last_serror());
 		}
-		/* ï¿½ï¿½ï¿½ÏµÍ³Ê±ï¿½ï¿½(ï¿½ï¿½ 1970 ï¿½ï¿½ï¿½ï¿½) */
+		/* »ñµÃÏµÍ³Ê±¼ä(×Ô 1970 ÖÁ½ñ) */
 		GetSystemTimeAsFileTime(&ft);
 		li.LowPart  = ft.dwLowDateTime;
 		li.HighPart = ft.dwHighDateTime;
@@ -109,27 +109,27 @@ int gettimeofday(struct timeval *tv, struct timezone *tz)
 		t -= EPOCHFILETIME;     /* Offset to the Epoch time */
 		t /= 10;                /* In microseconds */
 
-		/* ×ªï¿½ï¿½ï¿½É±ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½Ä»ï¿½×¼Ê±ï¿½ï¿½ */
+		/* ×ª»»³É±¾´Î¿ª»úºóµÄ»ù×¼Ê±¼ä */
 		ctx->tvbase.tv_sec  = (long)(t / 1000000);
 		ctx->tvbase.tv_usec = (long)(t % 1000000);
 
-		/* ï¿½ï¿½Ã±ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ê±ï¿½Ó¼ï¿½ï¿½ï¿½ */
+		/* »ñµÃ±¾´Î¿ª»úºóµ½ÏÖÔÚµÄÊ±ÖÓ¼ÆÊý */
 		if (!QueryPerformanceCounter(&ctx->stamp)) {
 			msg_fatal("%s(%d): unable to get System time(%s)",
 				__FILE__, __LINE__, last_serror());
 		}
 	}
 
-	/* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ê±ï¿½ï¿½ï¿½ */
+	/* ¿ªÊ¼»ñµÃÏÖÔÚµÄÊ±¼ä½Ø */
 
 	if (tv) {
-		/* ï¿½ï¿½Ã±ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Úµï¿½Ê±ï¿½Ó¼ï¿½ï¿½ï¿½  */
+		/* »ñµÃ±¾´Î¿ª»úºóÖÁÏÖÔÚµÄÊ±ÖÓ¼ÆÊý  */
 		if (!QueryPerformanceCounter(&stamp)) {
 			msg_fatal("%s(%d): unable to get System time(%s)",
 				__FILE__, __LINE__, last_serror());
 		}
 
-		/* ï¿½ï¿½ï¿½ãµ±Ç°ï¿½ï¿½È·Ê±ï¿½ï¿½ï¿½ */
+		/* ¼ÆËãµ±Ç°¾«È·Ê±¼ä½Ø */
 		t = (stamp.QuadPart - ctx->stamp.QuadPart) * 1000000
 			/ ctx->frequency.QuadPart;
 		tv->tv_sec = ctx->tvbase.tv_sec + (long)(t / 1000000);
