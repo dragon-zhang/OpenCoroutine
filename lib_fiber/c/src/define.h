@@ -24,6 +24,7 @@
 #  undef FD_SETSIZE
 #  define FD_SETSIZE 102400
 #  include <winsock2.h>
+#  include <windows.h>
 #  include <mswsock.h>
 # else
 #  include <winsock.h>

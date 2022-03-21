@@ -10,6 +10,7 @@ typedef intptr_t acl_handle_t;
 
 #if defined(_WIN32) || defined (_WIN64)
 # include <winsock2.h>
+# include <windows.h>
 
 /* typedef intptr_t ssize_t; */
 # ifndef	HAS_SSIZE_T
