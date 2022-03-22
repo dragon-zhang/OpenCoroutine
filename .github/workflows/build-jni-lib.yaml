@@ -49,25 +49,26 @@ jobs:
           name: lib
           path: open-coroutine-java/open-coroutine-core/target/classes/*.dylib
 
-  windows:
-    runs-on: windows-2019
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          java-version: '8'
-          distribution: 'adopt'
-      - name: Build lib_fiber
-        run: cd lib_fiber/c && make
-      - name: show lib fiber
-        run: cd lib_fiber/lib && ls
-      - name: Build with Maven
-        run: cd open-coroutine-java/ && mvn clean package
-      - name: show jni lib
-        run: cd open-coroutine-java/open-coroutine-core/target/classes && ls
-      - uses: actions/upload-artifact@v2
-        with:
-          name: lib
-          path: open-coroutine-java/open-coroutine-core/target/classes/*.dll
+#  windows:
+#    runs-on: windows-2019
+#
+#    steps:
+#      - uses: actions/checkout@v2
+#      - name: Set up JDK 8
+#        uses: actions/setup-java@v2
+#        with:
+#          java-version: '8'
+#          distribution: 'adopt'
+#      - name: Build lib_fiber
+#        #fixme 这一步无法编译出静态连接库，因此暂不支持windows上CI/CD
+#        run: cd lib_fiber/c && make
+#      - name: show lib fiber
+#        run: cd lib_fiber/lib && ls
+#      - name: Build with Maven
+#        run: cd open-coroutine-java/ && mvn clean package
+#      - name: show jni lib
+#        run: cd open-coroutine-java/open-coroutine-core/target/classes && ls
+#      - uses: actions/upload-artifact@v2
+#        with:
+#          name: lib
+#          path: open-coroutine-java/open-coroutine-core/target/classes/*.dll
