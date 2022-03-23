@@ -48,28 +48,29 @@ JNIEXPORT jobject JNICALL Java_org_opencoroutine_framework_FiberApi_runningFiber
     return NULL;
 }
 
+ACL_FIBER *from_jobject(jobject fiber) {
+    //fixme 这里有类型转换问题
+    return NULL;
+}
+
 JNIEXPORT jint JNICALL Java_org_opencoroutine_framework_FiberApi_getId
         (JNIEnv *env, jclass clazz, jobject fiber) {
-    //fixme 这里有类型转换问题
-    return acl_fiber_id(fiber);
+    return acl_fiber_id(from_jobject(fiber));
 }
 
 JNIEXPORT jint JNICALL Java_org_opencoroutine_framework_FiberApi_getStatus
         (JNIEnv *env, jclass clazz, jobject fiber) {
-    //fixme 这里有类型转换问题
-    return acl_fiber_status(fiber);
+    return acl_fiber_status(from_jobject(fiber));
 }
 
 JNIEXPORT void JNICALL Java_org_opencoroutine_framework_FiberApi_exit
         (JNIEnv *env, jclass clazz, jobject fiber) {
-    //fixme 这里有类型转换问题
-    acl_fiber_kill(fiber);
+    acl_fiber_kill(from_jobject(fiber));
 }
 
 JNIEXPORT jboolean JNICALL Java_org_opencoroutine_framework_FiberApi_isExited
         (JNIEnv *env, jclass clazz, jobject fiber) {
-    //fixme 这里有类型转换问题
-    return acl_fiber_killed(fiber);
+    return acl_fiber_killed(from_jobject(fiber));
 }
 
 JNIEXPORT jlong JNICALL Java_org_opencoroutine_framework_FiberApi_delay
