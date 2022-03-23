@@ -85,9 +85,10 @@
                             <sources>
                                 <source>
                                     <directory>src/main/native/src</directory>
-                                    <fileNames>
-                                        <fileName>jni-library.c</fileName>
-                                    </fileNames>
+                                    <includes>
+                                        <include>fiber/*.h</include>
+                                        <include>*.c</include>
+                                    </includes>
                                 </source>
                             </sources>
 
