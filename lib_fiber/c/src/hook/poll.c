@@ -7,6 +7,12 @@
 
 #ifdef HAS_POLL
 
+struct POLLFD {
+	FILE_EVENT *fe;
+	POLL_EVENT *pe;
+	struct pollfd *pfd;
+};
+
 /****************************************************************************/
 
 #define TO_APPL ring_to_appl
@@ -49,8 +55,6 @@ static void read_callback(EVENT *ev, FILE_EVENT *fe)
 		pfd->fe = NULL;
 	}
 
-	assert(timer_cache_size(ev->poll_list) > 0);
-
 	/*
 	 * If any fe has been ready, the pe holding fe should be removed from
 	 * ev->poll_list to avoid to be called in timeout process.
@@ -63,6 +67,7 @@ static void read_callback(EVENT *ev, FILE_EVENT *fe)
 		timer_cache_remove(ev->poll_list, pfd->pe->expire, &pfd->pe->me);
 		ring_prepend(&ev->poll_ready, &pfd->pe->me);
 	}
+
 	pfd->pe->nready++;
 	SET_READABLE(fe);
 }
@@ -99,12 +104,11 @@ static void write_callback(EVENT *ev, FILE_EVENT *fe)
 		pfd->fe = NULL;
 	}
 
-	assert(timer_cache_size(ev->poll_list) > 0);
-
 	if (pfd->pe->nready == 0) {
 		timer_cache_remove(ev->poll_list, pfd->pe->expire, &pfd->pe->me);
 		ring_prepend(&ev->poll_ready, &pfd->pe->me);
 	}
+
 	pfd->pe->nready++;
 	SET_WRITABLE(fe);
 }
@@ -238,7 +242,6 @@ int WINAPI acl_fiber_poll(struct pollfd *fds, nfds_t nfds, int timeout)
 	pe.nfds   = nfds;
 	pe.fiber  = acl_fiber_running();
 	pe.proc   = poll_callback;
-	pe.nready = 0;
 
 	old_timeout = ev->timeout;
 	poll_event_set(ev, &pe, timeout);
@@ -261,7 +264,9 @@ int WINAPI acl_fiber_poll(struct pollfd *fds, nfds_t nfds, int timeout)
 
 		if (acl_fiber_killed(pe.fiber)) {
 			acl_fiber_set_error(pe.fiber->errnum);
-			pe.nready = -1;
+			if (pe.nready == 0) {
+				pe.nready = -1;
+			}
 
 			msg_info("%s(%d), %s: fiber-%u was killed, %s, timeout=%d",
 				__FILE__, __LINE__, __FUNCTION__,
@@ -272,6 +277,7 @@ int WINAPI acl_fiber_poll(struct pollfd *fds, nfds_t nfds, int timeout)
 		if (timer_cache_size(ev->poll_list) == 0) {
 			ev->timeout = -1;
 		}
+
 		if (pe.nready != 0 || timeout == 0) {
 			break;
 		}
