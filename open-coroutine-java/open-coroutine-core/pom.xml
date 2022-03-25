@@ -82,11 +82,11 @@
                             </javahIncludes>
                             <jdkIncludePath>${project.basedir}/src/main/native/head</jdkIncludePath>
                             <javahOS>${os_name}</javahOS>
-                            <dependencyIncludeDirectory>src/main/native/src/fiber</dependencyIncludeDirectory>
                             <sources>
                                 <source>
                                     <directory>src/main/native/src</directory>
                                     <includes>
+                                        <include>fiber/*.h</include>
                                         <include>*.c</include>
                                     </includes>
                                 </source>
@@ -113,7 +113,7 @@
                             </linkerStartOptions>
                             <linkerEndOptions>
                                 <!-- lib_fiber -->
-                                <linkerEndOption>-o ${project.basedir}/../../lib_fiber/lib/lib_fiber.a</linkerEndOption>
+                                <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/lib_fiber.a</linkerEndOption>
                                 <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                             </linkerEndOptions>
                         </configuration>
@@ -204,7 +204,7 @@
                     </linkerStartOptions>
                     <linkerEndOptions>
                         <!-- lib_fiber -->
-                        <linkerEndOption>-o ${project.basedir}/../../lib_fiber/lib/lib_fiber.a</linkerEndOption>
+                        <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/lib_fiber.a</linkerEndOption>
                         <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                     </linkerEndOptions>
                 </configuration>
