@@ -113,7 +113,7 @@
                             </linkerStartOptions>
                             <linkerEndOptions>
                                 <!-- lib_fiber -->
-                                <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/lib_fiber.a</linkerEndOption>
+                                <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/</linkerEndOption>
                                 <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                             </linkerEndOptions>
                         </configuration>
@@ -204,7 +204,7 @@
                     </linkerStartOptions>
                     <linkerEndOptions>
                         <!-- lib_fiber -->
-                        <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/lib_fiber.a</linkerEndOption>
+                        <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/</linkerEndOption>
                         <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                     </linkerEndOptions>
                 </configuration>
