@@ -23,6 +23,7 @@
             </activation>
             <properties>
                 <os_name>macos</os_name>
+                <!--todo 这里由于libfiber还不支持交叉编译，先不用-arch x86_64 -arch arm64-->
                 <os_arch_option>-m64</os_arch_option>
                 <lib_name>libJniLibrary.dylib</lib_name>
             </properties>
