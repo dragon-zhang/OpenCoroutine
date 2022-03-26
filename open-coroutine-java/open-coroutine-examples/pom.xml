@@ -17,5 +17,16 @@
             <artifactId>open-coroutine-sdk</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.android</groupId>
+                    <artifactId>android</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 </project>

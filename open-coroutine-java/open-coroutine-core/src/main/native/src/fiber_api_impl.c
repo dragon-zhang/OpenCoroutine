@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <jni.h>
 #include <jni_md.h>
 #include <jvmti.h>
@@ -27,10 +28,8 @@ void fiber_main(ACL_FIBER *fiber, void *ctx) {
 
 JNIEXPORT jobject JNICALL Java_org_opencoroutine_framework_FiberApi_crate
         (JNIEnv *env, jclass clazz, jobject function, jobject param, jint size) {
-    Caller *caller;
-    caller->env = env;
-    caller->function = function;
-    caller->param = param;
+    struct Caller c = {env, function, param};
+    Caller *caller = &c;
     //fixme 这里想下怎么返回fiber指针
     ACL_FIBER *fiber = acl_fiber_create(fiber_main, caller, size);
     return NULL;
