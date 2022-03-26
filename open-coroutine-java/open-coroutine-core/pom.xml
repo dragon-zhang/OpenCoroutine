@@ -205,7 +205,7 @@
                     <linkerEndOptions>
                         <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
                         <!-- lib_fiber -->
-                        <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib</linkerEndOption>
+                        <linkerEndOption>${project.basedir}/../../lib_fiber/lib/libfiber.o</linkerEndOption>
                     </linkerEndOptions>
                 </configuration>
                 <executions>
