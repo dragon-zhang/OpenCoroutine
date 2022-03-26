@@ -11,8 +11,4 @@ public class SystemCallHookApi {
      * @param enable 如果需要hook系统调用，传true
      */
     public static native void hook(boolean enable);
-
-    static {
-        System.out.println(true ? 1 : 0);
-    }
 }

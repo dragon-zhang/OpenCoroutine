@@ -7,5 +7,6 @@ package org.opencoroutine.framework;
 public class SimpleJni {
     public static void main(String[] args) {
         System.out.println(NativeChecker.check("test"));
+        SystemCallHook.hook(true);
     }
 }
