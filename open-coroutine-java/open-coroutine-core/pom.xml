@@ -88,7 +88,9 @@
                                     <directory>src/main/native/src</directory>
                                     <includes>
                                         <include>fiber/*.h</include>
+                                        <include>fiber/*.hpp</include>
                                         <include>*.c</include>
+                                        <include>*.cpp</include>
                                     </includes>
                                 </source>
                             </sources>
@@ -173,6 +175,9 @@
                         <javahInclude>
                             <className>org.opencoroutine.framework.SystemCallHookApi</className>
                         </javahInclude>
+                        <javahInclude>
+                            <className>org.opencoroutine.framework.Function</className>
+                        </javahInclude>
                     </javahIncludes>
                     <jdkIncludePath>${project.basedir}/src/main/native/head</jdkIncludePath>
                     <javahOS>${os_name}</javahOS>
@@ -182,7 +187,9 @@
                             <directory>${project.basedir}/src/main/native/src</directory>
                             <includes>
                                 <include>fiber/*.h</include>
+                                <include>fiber/*.hpp</include>
                                 <include>*.c</include>
+                                <include>*.cpp</include>
                             </includes>
                         </source>
                     </sources>

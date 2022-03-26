@@ -3,7 +3,13 @@ project(open-coroutine-native)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_library(jni-lib SHARED src/jni-library.c)
+include_directories(src/fiber)
+
+add_library(jni-lib SHARED
+        src/native_checker_api_impl.cpp
+        src/fiber_api_impl.cpp
+        src/scheduler_api_impl.cpp
+        src/system_call_hook_api_impl.cpp)
 
 include_directories(head)
 IF (WIN32)

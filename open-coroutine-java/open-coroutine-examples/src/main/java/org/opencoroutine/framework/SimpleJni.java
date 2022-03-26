@@ -13,11 +13,14 @@ public class SimpleJni {
         Fiber.crate(new Function<Object, Object>() {
             @Override
             public Object apply(Object o) {
-                System.out.println(o);
-                return null;
+                System.out.println("apply:" + o);
+//                Fiber.yield();
+                return new Object();
             }
         }, 1);
         Scheduler.startScheduler();
         Thread.sleep(1000);
+        System.out.println(Scheduler.isScheduling());
+        Scheduler.stopScheduler();
     }
 }

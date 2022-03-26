@@ -11,25 +11,46 @@ struct Caller {
     JNIEnv *env;
     jobject function;
     jobject param;
+
+    Caller(JNIEnv *env, jobject function, jobject param) {
+        this->env = env;
+        this->function = function;
+        this->param = param;
+    }
 };
 
 /* 协程处理入口函数 */
-static
-
-void fiber_main(ACL_FIBER *fiber, void *ctx) {
-    Caller *caller = (Caller *) ctx;
-    if (NULL == apply) {
-        jclass functionClass = caller->env->FindClass("java/util/function/Function");
-        apply = caller->env->GetMethodID(functionClass, "apply", "(Ljava/lang/Object;)Ljava/lang/Object");
-    }
+static void fiber_main(ACL_FIBER *fiber, void *ctx) {
+    printf("before2\n");
+    Caller *caller = static_cast<Caller *>(ctx);
+    printf("before3\n");
     //调用apply方法
-    jobject result = caller->env->CallObjectMethod(caller->function, apply, caller->param);
+    if (NULL != apply) {
+        printf("before4\n");
+        jobject result = caller->env->CallObjectMethod(caller->function, apply, caller->param);
+        printf("after2\n");
+    }
+
 }
 
 JNIEXPORT jobject JNICALL Java_org_opencoroutine_framework_FiberApi_crate
         (JNIEnv *env, jclass clazz, jobject function, jobject param, jint size) {
-    struct Caller c = {env, function, param};
-    Caller *caller = &c;
+    if (NULL == apply) {
+        jclass functionClass = env->GetObjectClass(function);
+        printf("jclass %d\n", functionClass != NULL);
+        jclass superClass = env->GetSuperclass(functionClass);
+        printf("superClass %d\n", superClass != NULL);
+        jmethodID apply2 = env->GetMethodID(functionClass, "apply", "(Ljava/lang/Object;)Ljava/lang/Object;");
+        printf("apply %d\n", apply2 != NULL);
+        if (NULL != apply2) {
+//            printf("before\n");
+//            env->CallObjectMethod(function, apply2, param);
+//            printf("after\n");
+            apply = apply2;
+        }
+    }
+
+    Caller *caller = new Caller(env, function, param);
     //fixme 这里想下怎么返回fiber指针
     ACL_FIBER *fiber = acl_fiber_create(fiber_main, caller, size);
     return NULL;
