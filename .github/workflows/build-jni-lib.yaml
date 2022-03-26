@@ -15,6 +15,8 @@ jobs:
           distribution: 'adopt'
       - name: Build lib_fiber
         run: cd lib_fiber/c && make
+      - name: show lib fiber temp files
+        run: cd lib_fiber/c/debug && ls
       - name: show lib fiber
         run: cd lib_fiber/lib && ls
       - name: Build with Maven
@@ -38,6 +40,8 @@ jobs:
           distribution: 'adopt'
       - name: Build lib_fiber
         run: cd lib_fiber/c && make
+      - name: show lib fiber temp files
+        run: cd lib_fiber/c/debug && ls
       - name: show lib fiber
         run: cd lib_fiber/lib && ls
       - name: Build with Maven
