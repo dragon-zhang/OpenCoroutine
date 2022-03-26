@@ -203,9 +203,9 @@
                         <linkerStartOption>-shared</linkerStartOption>
                     </linkerStartOptions>
                     <linkerEndOptions>
-                        <!-- lib_fiber -->
-                        <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib/libfiber.o</linkerEndOption>
                         <linkerEndOption>-o ${project.build.directory}/classes/${lib_name}</linkerEndOption>
+                        <!-- lib_fiber -->
+                        <linkerEndOption>-L ${project.basedir}/../../lib_fiber/lib</linkerEndOption>
                     </linkerEndOptions>
                 </configuration>
                 <executions>
