@@ -6,4 +6,4 @@
 可以简单认为是`lib_fiber`的`rust`版本。
 
 ## open-coroutine-java
-为java提供协程API，底层先使用`lib_fiber`，后续可能会切换到`open-coroutine`。
+为java提供协程API，底层先使用`lib_fiber`。
