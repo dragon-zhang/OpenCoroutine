@@ -6,6 +6,10 @@ package org.opencoroutine.framework;
  */
 public class SchedulerApi {
 
+    public static void callback() {
+        System.out.println("called from JNI");
+    }
+
     /**
      * 使用指定的事件类型启动纤程调度过程，默认事件类型是 FIBER_EVENT_KERNEL。
      * {@code acl_fiber_schedule_with}

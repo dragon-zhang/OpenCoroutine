@@ -20,7 +20,6 @@ public class SimpleJni {
         }, 1);
         Scheduler.startScheduler();
         Thread.sleep(1000);
-        System.out.println(Scheduler.isScheduling());
         Scheduler.stopScheduler();
     }
 }

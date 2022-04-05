@@ -5,23 +5,6 @@
 #include "fiber/lib_fiber.h"
 #include "org_opencoroutine_framework_FiberApi.h"
 
-static JavaVM *jvm;
-
-int init_agent(JavaVM *vm, void *reserved) {
-    JNIEnv *env;
-    jint result = vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6);
-    if (JNI_OK != result) {
-        return JNI_FALSE;
-    }
-    jvm = vm;
-    return JNI_OK;
-}
-
-JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
-    init_agent(vm, reserved);
-    return JNI_VERSION_1_6;
-}
-
 static jmethodID apply = NULL;
 
 struct Caller {
@@ -42,14 +25,14 @@ static void fiber_main(ACL_FIBER *fiber, void *ctx) {
     //调用apply方法
     if (NULL != apply) {
         printf("before4\n");
-        JNIEnv *env;
-        jint result = jvm->AttachCurrentThread(reinterpret_cast<void **>(&env), NULL);
-        if (JNI_OK != result) {
-            return;
-        }
-        //fixme 这里回调，Scheduler.startScheduler()会报java.lang.StackOverflowError
-        //jobject userResult = env->CallObjectMethod(caller->function, apply, caller->param);
-        jvm->DetachCurrentThread();
+//        JNIEnv *env;
+//        jint result = jvm->AttachCurrentThread(reinterpret_cast<void **>(&env), NULL);
+//        if (JNI_OK != result) {
+//            return;
+//        }
+//        //fixme 这里回调，Scheduler.startScheduler()会报java.lang.StackOverflowError
+//        jobject userResult = env->CallObjectMethod(caller->function, apply, caller->param);
+//        jvm->DetachCurrentThread();
         printf("after2\n");
     }
 
@@ -59,10 +42,8 @@ JNIEXPORT jobject JNICALL Java_org_opencoroutine_framework_FiberApi_crate
         (JNIEnv *env, jclass clazz, jobject function, jobject param, jint size) {
     if (NULL == apply) {
         jclass functionClass = env->GetObjectClass(function);
-        printf("jclass %d\n", functionClass != NULL);
         apply = env->GetMethodID(functionClass, "apply", "(Ljava/lang/Object;)Ljava/lang/Object;");
     }
-    env->CallObjectMethod(function, apply, param);
     env->CallObjectMethod(function, apply, param);
 
     Caller *caller = new Caller(function, param);
