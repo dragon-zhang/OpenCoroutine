@@ -28,26 +28,48 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
 
 static jmethodID callback;
 
+struct Context {
+    JNIEnv *env;
+    jclass clazz;
+};
+
 /* 协程处理入口函数 */
 static void fiber_main(ACL_FIBER *fiber, void *ctx) {
-    JNIEnv *env = NULL;
-    if (jvm->AttachCurrentThread(reinterpret_cast<void **>(&env), NULL) == JNI_OK) {
-        jclass *clazz = static_cast<jclass *>(ctx);
-        env->CallStaticVoidMethod(*clazz, callback);
-        jvm->DetachCurrentThread();
-    }
+    Context *context = static_cast<Context *>(ctx);
+    jstring param = context->env->NewStringUTF("from fiber");
+    context->env->CallStaticVoidMethod(context->clazz, callback, param);
+
+    printf("detach current thread...\n");
+    jvm->DetachCurrentThread();
+
+    acl_fiber_kill(fiber);
+    printf("killed fiber\n");
 }
 
 void *handle(void *param) {
-    ACL_FIBER *fiber = acl_fiber_create(fiber_main, param, 2048);
+
+    jclass clazz = *static_cast<jclass *>(param);
+    JNIEnv *env = NULL;
+    jint result = jvm->AttachCurrentThread(reinterpret_cast<void **>(&env), NULL);
+    if (result != JNI_OK) {
+        printf("thread attach current thread failed !\n");
+        return NULL;
+    }
+    jstring p = env->NewStringUTF("from thread");
+    env->CallStaticVoidMethod(clazz, callback, p);
+
+    Context *context = new Context;
+    context->env = env;
+    context->clazz = clazz;
+
+    ACL_FIBER *fiber = acl_fiber_create(fiber_main, context, 512 * 1024 * 1024);
     acl_fiber_schedule_with(FIBER_EVENT_KERNEL);
     return NULL;
 }
 
 JNIEXPORT void JNICALL Java_org_opencoroutine_framework_SchedulerApi_startScheduler
         (JNIEnv *env, jclass clazz, jint mode) {
-    callback = env->GetStaticMethodID(clazz, "callback", "()V");
-    env->CallStaticVoidMethod(clazz, callback);
+    callback = env->GetStaticMethodID(clazz, "callback", "(Ljava/lang/String;)V");
     pthread_t t;
     pthread_create(&t, NULL, handle, &clazz);
 //    int event_mode = FIBER_EVENT_KERNEL;

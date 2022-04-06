@@ -1,13 +1,25 @@
 package org.opencoroutine.framework;
 
+import java.io.IOException;
+import java.util.Optional;
+
 /**
  * @author ZhangZiCheng
  * @date 2022/3/22 18:25
  */
 public class SchedulerApi {
 
-    public static void callback() {
-        System.out.println("called from JNI");
+    public static void callback(String param) {
+        System.out.println("JNI(" + param + ") called from " + Thread.currentThread().getName());
+        Optional.ofNullable(HttpUtil.doGet("http://127.0.0.1:8081/rust"))
+                .ifPresent(body -> {
+                    try {
+                        System.out.println(body.string());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
+        System.out.println("finished");
     }
 
     /**

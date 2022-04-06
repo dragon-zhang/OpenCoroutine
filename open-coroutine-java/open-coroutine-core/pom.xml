@@ -11,6 +11,20 @@
 
     <artifactId>open-coroutine-core</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.14.9</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.android</groupId>
+                    <artifactId>android</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
     <profiles>
         <!-- https://github.com/openjdk/jdk/blob/jdk-16%2B36/src/java.base/windows/native/libjava/java_props_md.c#L568 -->
         <!-- macos -->
