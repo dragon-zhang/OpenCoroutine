@@ -9,9 +9,9 @@ import java.util.function.Function;
 public class Fiber extends NativeLibraryLoader {
 
     /**
-     * 64KB
+     * 最小128KB
      */
-    public static final int DEFAULT_SIZE = 64 * 1024;
+    public static final int DEFAULT_SIZE = 128 * 1024 * 1024;
 
     public static Object crate(Function<Object, Object> function, Object param) {
         return crate(function, param, DEFAULT_SIZE);
