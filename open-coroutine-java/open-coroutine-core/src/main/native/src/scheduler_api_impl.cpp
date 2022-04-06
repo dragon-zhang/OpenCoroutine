@@ -21,6 +21,12 @@ JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *reserved) {
     return JNI_VERSION_1_8;
 }
 
+long getCurrentTime() {
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+}
+
 #define FIBER_EVENT_KERNEL  0
 #define FIBER_EVENT_POLL    1
 #define FIBER_EVENT_SELECT  2
@@ -62,7 +68,7 @@ void *handle(void *param) {
     context->env = env;
     context->clazz = clazz;
 
-    ACL_FIBER *fiber = acl_fiber_create(fiber_main, context, 512 * 1024 * 1024);
+    ACL_FIBER *fiber = acl_fiber_create(fiber_main, context, 128 * 1024 * 1024);
     acl_fiber_schedule_with(FIBER_EVENT_KERNEL);
     return NULL;
 }

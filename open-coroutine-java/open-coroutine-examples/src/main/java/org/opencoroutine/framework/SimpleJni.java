@@ -9,7 +9,7 @@ public class SimpleJni {
         System.out.println(Thread.currentThread().getName());
         SystemCallHook.hook(true);
         Scheduler.startScheduler();
-        Thread.sleep(1000);
+        Thread.sleep(3000);
         Scheduler.stopScheduler();
     }
 }
