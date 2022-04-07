@@ -1,7 +1,6 @@
 package org.opencoroutine.framework;
 
-import java.io.IOException;
-import java.util.Optional;
+import reactor.netty.http.client.HttpClient;
 
 /**
  * @author ZhangZiCheng
@@ -9,16 +8,21 @@ import java.util.Optional;
  */
 public class SchedulerApi {
 
+    private static final HttpClient CLIENT = HttpClient.create();
+
     public static void callback(String param) {
         System.out.println("JNI(" + param + ") called from " + Thread.currentThread().getName());
-        Optional.ofNullable(HttpUtil.doGet("http://127.0.0.1:8081/rust"))
-                .ifPresent(body -> {
-                    try {
-                        System.out.println(body.string());
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+        String body = CLIENT.get()
+                .uri("http://127.0.0.1:8081/rust")
+                .responseContent()
+                .aggregate()
+                .asString()
+                .block();
+        if (null == body) {
+            System.out.println("fail");
+        } else {
+            System.out.println(body);
+        }
         System.out.println("finished");
     }
 
