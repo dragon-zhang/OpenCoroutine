@@ -1,5 +1,6 @@
 #include <jni.h>
 #include <jni_md.h>
+#include <iostream>
 #include <pthread.h>
 #include "fiber/lib_fiber.h"
 #include "org_opencoroutine_framework_SchedulerApi.h"
@@ -37,19 +38,32 @@ static jmethodID callback;
 struct Context {
     JNIEnv *env;
     jclass clazz;
+    int index;
 };
 
 /* 协程处理入口函数 */
 static void fiber_main(ACL_FIBER *fiber, void *ctx) {
     Context *context = static_cast<Context *>(ctx);
-    jstring param = context->env->NewStringUTF("from fiber");
+    std::string s = "from fiber";
+    s.append(std::to_string(context->index));
+    jstring param = context->env->NewStringUTF((char *) s.data());
     context->env->CallStaticVoidMethod(context->clazz, callback, param);
+
+    acl_fiber_kill(fiber);
+    printf("killed fiber%d\n", context->index);
+}
+
+/**
+ * 延迟detach
+ */
+static void detach(ACL_FIBER *fiber, void *ctx) {
+    acl_fiber_delay(1500);
 
     printf("detach current thread...\n");
     jvm->DetachCurrentThread();
 
     acl_fiber_kill(fiber);
-    printf("killed fiber\n");
+    printf("killed detach fiber\n");
 }
 
 void *handle(void *param) {
@@ -64,11 +78,17 @@ void *handle(void *param) {
     jstring p = env->NewStringUTF("from thread");
     env->CallStaticVoidMethod(clazz, callback, p);
 
-    Context *context = new Context;
-    context->env = env;
-    context->clazz = clazz;
+    //fixme 这里超过2个协程就会报奇怪的错
+    for (int i = 0; i < 2; ++i) {
+        Context *context = new Context;
+        context->env = env;
+        context->clazz = clazz;
+        context->index = i;
+        acl_fiber_create(fiber_main, context, 128 * 1024 * 1024);
+    }
 
-    ACL_FIBER *fiber = acl_fiber_create(fiber_main, context, 128 * 1024 * 1024);
+    acl_fiber_create(detach, NULL, 128 * 1024 * 1024);
+
     acl_fiber_schedule_with(FIBER_EVENT_KERNEL);
     return NULL;
 }

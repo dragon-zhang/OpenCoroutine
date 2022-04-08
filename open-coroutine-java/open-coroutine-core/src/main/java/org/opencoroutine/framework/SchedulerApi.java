@@ -12,16 +12,25 @@ public class SchedulerApi {
 
     public static void callback(String param) {
         System.out.println("JNI(" + param + ") called from " + Thread.currentThread().getName());
-        String body = CLIENT.get()
-                .uri("http://127.0.0.1:8081/rust")
-                .responseContent()
-                .aggregate()
-                .asString()
-                .block();
-        if (null == body) {
-            System.out.println("fail");
-        } else {
-            System.out.println(body);
+        Thread.currentThread().setUncaughtExceptionHandler((t, e) -> {
+            System.out.println("UncaughtExceptionHandler");
+            e.printStackTrace();
+        });
+        try {
+            String body = CLIENT.get()
+                    .uri("http://127.0.0.1:8081/rust")
+                    .responseContent()
+                    .aggregate()
+                    .asString()
+                    .block();
+            if (null == body) {
+                System.out.println("fail");
+            } else {
+                System.out.println(body);
+            }
+        } catch (Throwable t) {
+            System.out.println("Throwable");
+            t.printStackTrace();
         }
         System.out.println("finished");
     }
