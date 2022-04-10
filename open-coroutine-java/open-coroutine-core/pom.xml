@@ -31,7 +31,8 @@
             </activation>
             <properties>
                 <os_name>macos</os_name>
-                <os_arch_option>-arch x86_64 -arch arm64</os_arch_option>
+                <!-- fixme -arch x86_64 -arch arm64 -->
+                <os_arch_option>-m64</os_arch_option>
                 <lib_name>libJniLibrary.dylib</lib_name>
             </properties>
         </profile>
