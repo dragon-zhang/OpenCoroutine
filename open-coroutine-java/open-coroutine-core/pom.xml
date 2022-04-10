@@ -48,7 +48,8 @@
             </activation>
             <properties>
                 <os_name>linux</os_name>
-                <os_arch_option>-m64</os_arch_option>
+                <!--todo 这里试下不用-m64是否可以编译通过-->
+                <os_arch_option></os_arch_option>
                 <lib_name>libJniLibrary-x64.so</lib_name>
             </properties>
         </profile>
