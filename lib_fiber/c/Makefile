@@ -105,7 +105,7 @@ endif
 
 # For Linux
 ifeq ($(findstring Linux, $(UNIXNAME)), Linux)
-	CC += -m64
+	CC += -m64 -fpic
 	UNIXTYPE = LINUX
 endif
 
