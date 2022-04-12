@@ -1,7 +1,7 @@
 #ifndef	__RESOLVER_INCLUDE_H__
 #define	__RESOLVER_INCLUDE_H__
 
-#include "common/argv.h"
+#include "argv.h"
 
 #ifdef	__cplusplus
 extern "C" {

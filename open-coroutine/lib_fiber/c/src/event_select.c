@@ -3,8 +3,8 @@
 
 #ifdef HAS_SELECT
 
-#include "fiber/libfiber.h"
-#include "hook/hook.h"
+#include "../include/libfiber.h"
+#include "hook.h"
 #include "event.h"
 #include "event_select.h"
 

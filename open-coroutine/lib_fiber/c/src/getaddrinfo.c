@@ -1,6 +1,6 @@
 #include "stdafx.h"
-#include "dns/sane_inet.h"
-#include "dns/resolver.h"
+#include "sane_inet.h"
+#include "resolver.h"
 #include "common.h"
 #include "fiber.h"
 #include "hook.h"

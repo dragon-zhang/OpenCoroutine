@@ -10,9 +10,9 @@
 
 #include <string.h>
 
-#include "common/strops.h"
-#include "common/msg.h"
-#include "common/argv.h"
+#include "strops.h"
+#include "msg.h"
+#include "argv.h"
 #include "rfc1035.h"
 
 #define RFC1035_MAXLABELSZ	63

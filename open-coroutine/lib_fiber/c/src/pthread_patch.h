@@ -7,7 +7,7 @@ extern "C" {
 
 #if defined(_WIN32) || defined(_WIN64)
 #include <time.h>
-#include "fiber/fiber_define.h"
+#include "../include/fiber_define.h"
 
 #define __thread __declspec(thread)
 

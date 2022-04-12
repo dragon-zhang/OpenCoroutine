@@ -1,19 +1,19 @@
 #include "stdafx.h"
 
-#include "fiber/fiber_define.h"
-#include "fiber/fiber_hook.h"
+#include "../include/fiber_define.h"
+#include "../include/fiber_hook.h"
 
 #ifndef SYS_UNIX
-#include "common/pthread_patch.h"
+#include "pthread_patch.h"
 #elif defined(SYS_WIN)
 #pragma comment(lib, "Iphlpapi.lib")
 #endif
 
-#include "common/msg.h"
-#include "common/argv.h"
-#include "common/htable.h"
-#include "common/strops.h"
-#include "common/iostuff.h"
+#include "msg.h"
+#include "argv.h"
+#include "htable.h"
+#include "strops.h"
+#include "iostuff.h"
 
 #include "rfc1035.h"
 #include "sane_inet.h"

@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "fiber/fiber_define.h"
+#include "../include/fiber_define.h"
 #include "fiber.h"
 #include "msg.h"
 #include "iostuff.h"

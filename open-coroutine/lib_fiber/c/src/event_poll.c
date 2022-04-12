@@ -3,7 +3,7 @@
 
 #ifdef HAS_POLL
 
-#include "hook/hook.h"
+#include "hook.h"
 #include "event.h"
 #include "event_poll.h"
 

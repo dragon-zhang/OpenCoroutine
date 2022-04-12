@@ -1,7 +1,7 @@
 #ifndef __HOOK_HEAD_H__
 #define __HOOK_HEAD_H__
 
-#include "fiber/fiber_define.h"
+#include "../include/fiber_define.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,7 +21,7 @@ typedef socket_t (WINAPI *accept_fn)(socket_t, struct sockaddr *, socklen_t *);
 typedef int (WINAPI *connect_fn)(socket_t, const struct sockaddr *, socklen_t);
 
 typedef int (WINAPI *getaddrinfo_fn)(const char *node, const char *service,
-	const struct addrinfo* hints, struct addrinfo **res);
+                                     const struct addrinfo* hints, struct addrinfo **res);
 typedef void (WINAPI *freeaddrinfo_fn)(struct addrinfo *res);
 typedef struct hostent *(WINAPI *gethostbyname_fn)(const char *);
 

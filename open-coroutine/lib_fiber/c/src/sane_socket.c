@@ -1,5 +1,5 @@
 #include "stdafx.h"
-#include "fiber/libfiber.h"
+#include "../include/libfiber.h"
 #include "msg.h"
 #include "sane_socket.h"
 

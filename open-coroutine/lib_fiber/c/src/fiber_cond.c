@@ -1,8 +1,8 @@
 #include "stdafx.h"
 #include "common.h"
 
-#include "fiber/libfiber.h"
-#include "fiber/fiber_cond.h"
+#include "../include/libfiber.h"
+#include "../include/fiber_cond.h"
 #include "pthread_patch.h"
 #include "fiber.h"
 

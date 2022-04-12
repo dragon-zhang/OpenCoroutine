@@ -1,57 +1,57 @@
 #ifndef	IOSTUFF_INCLUDE_H
 #define	IOSTUFF_INCLUDE_H
-#include <fiber/fiber_define.h>
+#include "../include/fiber_define.h"
 
 #ifdef	__cplusplus
 extern "C" {
 #endif
 
-#define CLOSE_ON_EXEC   1  /**< ±êÖ¾Î», µ÷ÓÃ exec ºó×Ô¶¯¹Ø±Õ´ò¿ªµÄÃèÊö×Ö */
+#define CLOSE_ON_EXEC   1  /**< ï¿½ï¿½Ö¾Î», ï¿½ï¿½ï¿½ï¿½ exec ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½Ø±Õ´ò¿ªµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 #define PASS_ON_EXEC    0
 
-#define BLOCKING        0  /**< ×èÈû¶ÁÐ´±êÖ¾Î» */
-#define NON_BLOCKING    1  /**< ·Ç×èÈû¶ÁÐ´±êÖ¾Î» */
+#define BLOCKING        0  /**< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ö¾Î» */
+#define NON_BLOCKING    1  /**< ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½Ö¾Î» */
 
 /**
- * ÉèÖÃÌ×½Ó¿ÚÎª×èÈû»ò·Ç×èÈû
- * @param fd {socket_t} Ì×½Ó×Ö
- * @param on {int} ÊÇ·ñÉèÖÃ¸ÃÌ×½Ó×ÖÎª·Ç×èÈû, BLOCKING »ò NON_BLOCKING
- * @return {int} >= 0: ³É¹¦, ·µ»ØÖµ > 0 ±íÊ¾ÉèÖÃÖ®Ç°µÄ±êÖ¾Î»; -1: Ê§°Ü
+ * ï¿½ï¿½ï¿½ï¿½ï¿½×½Ó¿ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param fd {socket_t} ï¿½×½ï¿½ï¿½ï¿½
+ * @param on {int} ï¿½Ç·ï¿½ï¿½ï¿½ï¿½Ã¸ï¿½ï¿½×½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, BLOCKING ï¿½ï¿½ NON_BLOCKING
+ * @return {int} >= 0: ï¿½É¹ï¿½, ï¿½ï¿½ï¿½ï¿½Öµ > 0 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½Ö®Ç°ï¿½Ä±ï¿½Ö¾Î»; -1: Ê§ï¿½ï¿½
  */
 int non_blocking(socket_t fd, int on);
 
 /**
- * ÅÐ¶ÏÖ¸¶¨µÄÌ×½Ó×ÖÊÇ·ñ±»ÉèÖÃÁË·Ç×èÈûÄ£Ê½
- * @param fd {socket_t} Ì×½Ó×Ö
- * @return {int} ·µ»Ø 1 ±íÊ¾±»ÉèÖÃÁË·Ç×èÈûÄ£Ê½£¬0 ±íÊ¾Î´ÉèÖÃ»ò³ö´í
+ * ï¿½Ð¶ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½ï¿½×½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+ * @param fd {socket_t} ï¿½×½ï¿½ï¿½ï¿½
+ * @return {int} ï¿½ï¿½ï¿½ï¿½ 1 ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½ï¿½ï¿½0 ï¿½ï¿½Ê¾Î´ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½
  */
 int is_non_blocking(socket_t fd);
 
 /**
- * ºÁÃë¼¶±ðË¯Ãß
- * @param delay {unsigned} ºÁÃëÖµ
+ * ï¿½ï¿½ï¿½ë¼¶ï¿½ï¿½Ë¯ï¿½ï¿½
+ * @param delay {unsigned} ï¿½ï¿½ï¿½ï¿½Öµ
  */
 void doze(unsigned delay);
 
 /**
- * ÉèÖÃÎÄ¼þÃèÊö·û±êÖ¾Î»£¬µ±µ÷ÓÃ exec ºó¸ÃÃèÊö·û×Ô¶¯±»¹Ø±Õ
- * @param fd {int} ÎÄ¼þÃèÊö·û
- * @param on {int} 1 »ò 0
+ * ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¾Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ exec ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½Ø±ï¿½
+ * @param fd {int} ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @param on {int} 1 ï¿½ï¿½ 0
  * @return {int} 0: ok; -1: error
  */
 int close_on_exec(int fd, int on);
 
 /**
- * Éè¶¨µ±Ç°½ø³Ì¿ÉÒÔ´ò¿ª×î´óÎÄ¼þÃèÊö·ûÖµ
- * @param limit {int} Éè¶¨µÄ×î´óÖµ
+ * ï¿½è¶¨ï¿½ï¿½Ç°ï¿½ï¿½ï¿½Ì¿ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+ * @param limit {int} ï¿½è¶¨ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
  * @return {int} >=0: ok; -1: error
  */
 int open_limit(int limit);
 
 /**
- * ÅÐ¶Ï¸ø¶¨Ä³¸öÎÄ¼þÃèÊö×ÖÊÇ·ñÊÇÌ×½Ó×Ö
- * @param fd {int} ÎÄ¼þÃèÊö·û
- * @return {int} != 0: ÊÇ; 0: ·ñ
+ * ï¿½Ð¶Ï¸ï¿½ï¿½ï¿½Ä³ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½×½ï¿½ï¿½ï¿½
+ * @param fd {int} ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * @return {int} != 0: ï¿½ï¿½; 0: ï¿½ï¿½
  */
 int issock(int fd);
 
@@ -62,7 +62,7 @@ void tcp_nodelay(socket_t fd, int onoff);
 int read_wait(socket_t fd, int delay);
 
 /**
- * ´´½¨ socket ¶Ô
+ * ï¿½ï¿½ï¿½ï¿½ socket ï¿½ï¿½
  * @param domain {int}
  * @param type {int}
  * @param protocol {int}

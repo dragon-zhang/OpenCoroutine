@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "common.h"
 
-#include "fiber/libfiber.h"
+#include "../include/libfiber.h"
 #include "gettimeofday.h"
 #include "event.h"
 #include "fiber.h"

@@ -13,7 +13,7 @@
 
 #if defined(SYS_WIN)
 # define HAS_ATOMIC
-#include "common/pthread_patch.h"
+#include "pthread_patch.h"
 #endif
 
 /*

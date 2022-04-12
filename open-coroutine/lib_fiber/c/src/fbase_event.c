@@ -16,8 +16,8 @@
 #else
 #endif
 
-#include "fiber/libfiber.h"
-#include "fiber/fiber_hook.h"
+#include "../include/libfiber.h"
+#include "../include/fiber_hook.h"
 #include "iostuff.h"
 #include "fiber.h"
 
