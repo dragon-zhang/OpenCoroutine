@@ -1,8 +1,34 @@
 extern crate cc;
 extern crate bindgen;
 
-use std::env;
-use std::path::PathBuf;
+use std::{env, fs, io};
+use std::path::{Path, PathBuf};
+use cc::Build;
+
+fn visit_dirs(dir: &Path, builder: &mut Build) -> io::Result<()> {
+    if dir.is_dir() {
+        for entry in fs::read_dir(dir)? {
+            let entry = entry?;
+            let path = entry.path();
+            if path.is_dir() {
+                visit_dirs(&path, builder)?;
+            } else {
+                let path = path.to_str().unwrap();
+                //头文件
+                if path.ends_with(".h") || path.ends_with(".hpp")
+                    //源文件
+                    || path.ends_with(".c") || path.ends_with(".cpp")
+                    //汇编源文件
+                    //|| path.ends_with(".S") || path.ends_with(".asm")
+                {
+                    println!("{}", path);
+                    builder.file(path);
+                }
+            }
+        }
+    }
+    Ok(())
+}
 
 fn main() {
     // Tell cargo to invalidate the built crate whenever the wrapper changes
@@ -30,13 +56,16 @@ fn main() {
     // 相当于执行
     // 1. `g++ -Wall -std=c++14 -c sorting.cpp`，使用g++编译sorting.cpp文件
     // 2. `ar rc libsorting.a sorting.o`，通过ar制作一份静态库libsorting.a
-    cc::Build::new()
-        .cpp(true)
-        .warnings(true)
-        .flag("-Wall")
-        .flag("-std=c++14")
-        .flag("-c")
-        .file("cpp_src/sorting.cpp")
-        .compile("sorting");
+    let mut builder = cc::Build::new();
     // 也可以使用Command::new("g++")来组装命令，但是cc更方便。
+
+    visit_dirs(Path::new("lib_fiber"),
+               builder.cpp(true)
+                   .warnings(true)
+                   .flag("-Wall")
+                   .flag("-std=c++14")
+                   .flag("-c")
+                   .file("cpp_src/sorting.cpp"),
+    ).unwrap();
+    builder.compile("sorting");
 }
