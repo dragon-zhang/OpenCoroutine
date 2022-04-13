@@ -7,7 +7,9 @@ ARFL    = rv
 #ARFL    = cru
 RANLIB  = ${ENV_RANLIB}
 
+#JMP_CTX = DUMMY
 JMP_CTX = USE_JMP_DEF
+#JMP_CTX = USE_BOOST_JMP
 
 CFLAGS = -c -g -W \
 -std=gnu99 \
@@ -22,16 +24,15 @@ CFLAGS = -c -g -W \
 -Wmissing-prototypes \
 -Wcast-qual \
 -DUSE_FAST_RING \
-#-DUSE_JMP_DEF \
-#-DUSE_BOOST_JMP \
+#-O3 \
 #-DUSE_VALGRIND \
+#-DUSE_INLINE_MEMCPY\
 #-DUSE_FAST_TIME \
 #-Waggregate-return \
 #-DDEBUG_MEM \
 #-I/usr/local/include
 #-DUSE_PRINTF_MACRO
 #-Wno-clobbered
-#-O3
 
 #-pedantic
 # -Wcast-align
@@ -70,10 +71,10 @@ ifeq ($(findstring gcc, $(CC)), gcc)
 	GCC_MINOR:=$(shell echo "$(GCC_VERSION)" | cut -d'.' -f2)
 	GCC_SUB:=$(shell echo "$(GCC_VERSION)" | cut -d'.' -f3)
 	GCC_VER:=$(shell [ $(GCC_MAJOR) -gt 4 -o \( $(GCC_MAJOR) -eq 4 -a $(GCC_MINOR) -gt 4 \) ] && echo true)
-	ifeq ($(GCC_VER), true)
-		CFLAGS += -Wno-implicit-fallthrough
-		CFLAGS += -Wno-absolute-value
-	endif
+#	ifeq ($(GCC_VER), true)
+#		CFLAGS += -Wno-implicit-fallthrough
+#		CFLAGS += -Wno-absolute-value
+#	endif
 endif
 
 ifeq ($(findstring clang, $(CC)), clang)
@@ -105,8 +106,8 @@ endif
 
 # For Linux
 ifeq ($(findstring Linux, $(UNIXNAME)), Linux)
-	CC += -m64 -fpic
 	UNIXTYPE = LINUX
+	CFLAGS += -DSHARE_STACK
 endif
 
 # For MINGW

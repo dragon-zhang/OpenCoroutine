@@ -204,12 +204,20 @@ static void fiber_io_loop(ACL_FIBER *self fiber_unused, void *ctx)
 		}
 
 		if (timer == NULL) {
+			/* Try again before exiting the IO fiber loop, some
+			 * other fiber maybe in the ready queue and wants to
+			 * add some IO event.
+			 */
+			while (acl_fiber_yield() > 0) {}
+
 			if (ev->fdcount > 0 || ev->waiter > 0) {
 				continue;
+			} else if (ring_size(&ev->events) > 0) {
+				continue;
 			}
-			msg_info("%s(%d), tid=%lu: fdcount=0, waiter=%u",
+			msg_info("%s(%d), tid=%lu: fdcount=0, waiter=%u, events=%d",
 				__FUNCTION__, __LINE__, __pthread_self(),
-				ev->waiter);
+				ev->waiter, ring_size(&ev->events));
 			break;
 		}
 
@@ -570,8 +578,12 @@ static int fiber_file_del(FILE_EVENT *fe)
 
 void fiber_file_free(FILE_EVENT *fe)
 {
-	fiber_file_del(fe);
-	file_event_free(fe);
+	if (fiber_file_del(fe) == 0) {
+		file_event_free(fe);
+	} else {
+		// xxx: What happened?
+		msg_error("Some error happened for fe=%p, fd=%d", fe, fe->fd);
+	}
 }
 
 void fiber_file_close(FILE_EVENT *fe)
