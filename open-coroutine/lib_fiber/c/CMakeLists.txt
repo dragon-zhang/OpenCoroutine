@@ -21,7 +21,6 @@ add_executable(c
         src/boost/make_arm64_aapcs_macho_gas.S
         src/boost/ontop_arm64_aapcs_macho_gas.S
         src/boost/setjmp.S
-        src/exp/setjmp.S
         src/argv.c
         src/argv.h
         src/array.c
