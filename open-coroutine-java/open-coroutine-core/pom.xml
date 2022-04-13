@@ -205,7 +205,7 @@
                     <compilerProvider>generic-classic</compilerProvider>
                     <compilerExecutable>g++</compilerExecutable>
                     <compilerStartOptions>
-                        <compilerStartOption>${os_arch_option}</compilerStartOption>
+<!--                        <compilerStartOption>${os_arch_option}</compilerStartOption>-->
                         <compilerStartOption>-fpic</compilerStartOption>
                         <compilerStartOption>-shared</compilerStartOption>
                         <compilerStartOption>-o</compilerStartOption>
