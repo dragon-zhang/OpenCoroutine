@@ -214,7 +214,7 @@
                     <linkerOutputDirectory>target</linkerOutputDirectory>
                     <linkerExecutable>g++</linkerExecutable>
                     <linkerStartOptions>
-                        <linkerStartOption>${os_arch_option}</linkerStartOption>
+<!--                        <linkerStartOption>${os_arch_option}</linkerStartOption>-->
                         <linkerStartOption>-fpic</linkerStartOption>
                         <linkerStartOption>-shared</linkerStartOption>
                     </linkerStartOptions>
