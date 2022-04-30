@@ -6,9 +6,15 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+libc = "0.2.119"
+
+[target."cfg(windows)".dependencies.kernel32-sys]
+version = "0.2.2"
+[target."cfg(windows)".dependencies.winapi]
+version = "0.2.2"
 
 [build-dependencies]
 # 从c/c++头文件自动生成rust
-bindgen = "0.59.2"
+#bindgen = "0.59.2"
 cc = "1.0.73"
 rustversion = "1.0.6"
