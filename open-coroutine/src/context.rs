@@ -26,7 +26,13 @@ extern "C" fn inner_context_function(mut t: Transfer) {
                 Some(data) => { print!("inner_context_function {} => ", data as usize) }
                 None => { print!("inner_context_function no param => ") }
             }
+            // copy stack
             let mut context_stack: Vec<&Context> = Vec::new();
+            unsafe {
+                for data in (*context).context_stack.iter() {
+                    context_stack.push(data);
+                }
+            }
             context_stack.push(&*context);
             let mut new_context = Context::init((*context).stack, (*context).proc, context_stack);
             //调用用户函数
@@ -81,7 +87,24 @@ impl<'a> Context<'a> {
                 context_stack.push(data);
             }
         }
-        context_stack.reverse();
+        Context {
+            stack: self.stack,
+            sp,
+            proc: self.proc,
+            param: None,
+            context_stack,
+        }
+    }
+
+    pub fn switch(&self, to: &Context) -> Self {
+        let mut sp = Transfer::switch(&to.sp);
+        let context = sp.data as *mut Context;
+        let mut context_stack: Vec<&Context> = Vec::new();
+        unsafe {
+            for data in (*context).context_stack.iter() {
+                context_stack.push(data);
+            }
+        }
         Context {
             stack: self.stack,
             sp,
